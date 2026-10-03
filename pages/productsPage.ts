@@ -1,9 +1,10 @@
 import { Page, expect } from '@playwright/test';
 
 export async function gotoProducts(page: Page) {
-  await page.getByRole('link', { name: ' Products' }).first().click();
+  await page.locator('a[href="/products"]').click();
   await page.waitForURL('**/products');
 }
+
 
 export async function verifyAllProductsPageVisible(page: Page) {
   await expect(page.getByText('ALL PRODUCTS')).toBeVisible();
