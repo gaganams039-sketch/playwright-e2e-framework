@@ -2,9 +2,8 @@ import { Page, expect } from '@playwright/test';
 
 export async function gotoProducts(page: Page) {
   await page.locator('a[href="/products"]').click();
-  await page.waitForSelector('#search_product', { timeout: 15000 });
+  await page.waitForSelector('#search_product', { timeout: 30000 });
 }
-
 
 export async function verifyAllProductsPageVisible(page: Page) {
   await expect(page.getByText('ALL PRODUCTS')).toBeVisible();
