@@ -2,7 +2,7 @@ import { Page, expect } from '@playwright/test';
 
 export async function gotoProducts(page: Page) {
   await page.locator('a[href="/products"]').click();
-  await page.waitForURL('**/products');
+  await page.waitForSelector('#search_product', { timeout: 15000 });
 }
 
 
@@ -12,8 +12,8 @@ export async function verifyAllProductsPageVisible(page: Page) {
 
 export async function viewFirstProduct(page: Page) {
   await page.locator('.product-image-wrapper').first().getByRole('link', { name: ' View Product' }).click();
+  await page.waitForSelector('.product-information h2', { timeout: 15000 });
 }
-
 export async function verifyProductDetailsVisible(page: Page) {
   await expect(page.locator('.product-information h2')).toBeVisible();
   await expect(page.getByText('Category:')).toBeVisible();

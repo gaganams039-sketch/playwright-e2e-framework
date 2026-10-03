@@ -20,9 +20,9 @@ export async function uploadFile(page: Page, filePath: string) {
 }
 
 export async function submitForm(page: Page) {
-  page.on('dialog', dialog => dialog.accept());
+  page.once('dialog', dialog => dialog.accept());
   await page.locator('[data-qa="submit-button"]').click();
-   await page.waitForTimeout(1000);
+  await page.waitForTimeout(3000);
 }
 export async function verifySuccessMessage(page: Page) {
   await expect(page.locator('#contact-page').getByText('Success! Your details have been submitted successfully.')).toBeVisible();
